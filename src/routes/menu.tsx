@@ -6,8 +6,8 @@ import { FoodCard } from "@/components/FoodCard";
 import { menuQuery, CATEGORIES } from "@/lib/api";
 
 export const Route = createFileRoute("/menu")({
-  validateSearch: (s: Record<string, unknown>): { category?: string } => ({
-    category: typeof s.category === "string" ? s.category : undefined,
+  validateSearch: (s: Record<string, unknown>): { category?: string | undefined } => ({
+    category: typeof s["category"] === "string" ? (s["category"] as string) : undefined,
   }),
   head: () => ({
     meta: [

@@ -38,7 +38,7 @@ function Checkout() {
       </div>
     );
 
-  async function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent): Promise<unknown> {
     e.preventDefault();
     if (name.trim().length < 2) return toast.error("Please enter your name");
     if (contact.trim().length < 5) return toast.error("Please enter a phone number or email");
@@ -48,7 +48,7 @@ function Checkout() {
       p_name: name,
       p_contact: contact,
       p_items: lines.map((l) => ({ id: l.id, quantity: l.quantity })),
-      p_notes: notes || undefined,
+      p_notes: notes,
       p_payment: payment,
     });
     setBusy(false);
