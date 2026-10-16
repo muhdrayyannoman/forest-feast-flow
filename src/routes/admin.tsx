@@ -113,15 +113,21 @@ function Dashboard() {
     return () => { supabase.removeChannel(ch); };
   }, [qc]);
 
-  async function setStatus(id: string, status: OrderStatus) {
+  async function setStatus(id: string, status: OrderStatus): Promise<void> {
     const { error } = await supabase.from("orders").update({ status }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success(`Status set to ${status}`);
     qc.invalidateQueries({ queryKey: ["admin-orders"] });
   }
-  async function toggle(id: string, is_available: boolean) {
+  async function toggle(id: string, is_available: boolean): Promise<void> {
     const { error } = await supabase.from("menu_items").update({ is_available }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     qc.invalidateQueries({ queryKey: ["menu"] });
   }
 
