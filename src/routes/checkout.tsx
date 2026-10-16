@@ -38,10 +38,16 @@ function Checkout() {
       </div>
     );
 
-  async function submit(e: React.FormEvent): Promise<unknown> {
+  async function submit(e: React.FormEvent): Promise<void> {
     e.preventDefault();
-    if (name.trim().length < 2) return toast.error("Please enter your name");
-    if (contact.trim().length < 5) return toast.error("Please enter a phone number or email");
+    if (name.trim().length < 2) {
+      toast.error("Please enter your name");
+      return;
+    }
+    if (contact.trim().length < 5) {
+      toast.error("Please enter a phone number or email");
+      return;
+    }
     setBusy(true);
     if (payment === "simulated_card") await new Promise((r) => setTimeout(r, 1200)); // simulated payment
     const { data, error } = await supabase.rpc("place_order", {
@@ -52,7 +58,10 @@ function Checkout() {
       p_payment: payment,
     });
     setBusy(false);
-    if (error || !data) return toast.error(error?.message ?? "Could not place order");
+    if (error || !data) {
+      toast.error(error?.message ?? "Could not place order");
+      return;
+    }
     rememberOrder(data);
     clear();
     toast.success(`Order ${data} placed!`);
