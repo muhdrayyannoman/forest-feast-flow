@@ -5,11 +5,14 @@ import { useCart } from "@/lib/cart";
 import { formatPrice, type MenuItem } from "@/lib/cart-logic";
 import fallback from "@/assets/fallback-dish.jpg";
 
-export function FoodCard({ item }: { item: MenuItem }) {
+export function FoodCard({ item, index = 0 }: { item: MenuItem; index?: number }) {
   const { lines, add, setQty } = useCart();
   const inCart = lines.find((l) => l.id === item.id);
   return (
-    <article className="group flex flex-col overflow-hidden rounded-3xl border bg-card shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+    <article
+      className="animate-card-in group flex flex-col overflow-hidden rounded-3xl border bg-card shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift"
+      style={{ animationDelay: `${Math.min(index, 11) * 45}ms` }}
+    >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={item.image_url || fallback}
