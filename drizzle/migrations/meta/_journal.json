@@ -8,6 +8,13 @@
       "when": 1791882854897,
       "tag": "0000_restaurant_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793020587641,
+      "tag": "0001_kitchen_inventory",
+      "breakpoints": true
     }
   ]
 }
