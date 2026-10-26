@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as OrderOrderNumberRouteImport } from './routes/order.$orderNumber'
@@ -37,6 +38,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/inventory': typeof InventoryRoute
   '/menu': typeof MenuRoute
   '/orders': typeof OrdersRoute
   '/order/$orderNumber': typeof OrderOrderNumberRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/inventory': typeof InventoryRoute
   '/menu': typeof MenuRoute
   '/orders': typeof OrdersRoute
   '/order/$orderNumber': typeof OrderOrderNumberRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
+  '/inventory': typeof InventoryRoute
   '/menu': typeof MenuRoute
   '/orders': typeof OrdersRoute
   '/order/$orderNumber': typeof OrderOrderNumberRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/cart'
     | '/checkout'
+    | '/inventory'
     | '/menu'
     | '/orders'
     | '/order/$orderNumber'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/cart'
     | '/checkout'
+    | '/inventory'
     | '/menu'
     | '/orders'
     | '/order/$orderNumber'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/cart'
     | '/checkout'
+    | '/inventory'
     | '/menu'
     | '/orders'
     | '/order/$orderNumber'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
+  InventoryRoute: typeof InventoryRoute
   MenuRoute: typeof MenuRoute
   OrdersRoute: typeof OrdersRoute
   OrderOrderNumberRoute: typeof OrderOrderNumberRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/menu': {
       id: '/menu'
       path: '/menu'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
+  InventoryRoute: InventoryRoute,
   MenuRoute: MenuRoute,
   OrdersRoute: OrdersRoute,
   OrderOrderNumberRoute: OrderOrderNumberRoute,

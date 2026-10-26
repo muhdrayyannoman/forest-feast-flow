@@ -14,6 +14,74 @@ export type Database = {
   }
   public: {
     Tables: {
+      inventory_items: {
+        Row: {
+          category: string
+          id: string
+          last_updated: string
+          min_stock_level: number
+          name: string
+          quantity: number
+          unit: string
+        }
+        Insert: {
+          category: string
+          id?: string
+          last_updated?: string
+          min_stock_level?: number
+          name: string
+          quantity?: number
+          unit: string
+        }
+        Update: {
+          category?: string
+          id?: string
+          last_updated?: string
+          min_stock_level?: number
+          name?: string
+          quantity?: number
+          unit?: string
+        }
+        Relationships: []
+      }
+      inventory_logs: {
+        Row: {
+          change: number
+          created_at: string
+          id: string
+          item_id: string
+          note: string | null
+          order_number: string | null
+          reason: string
+        }
+        Insert: {
+          change: number
+          created_at?: string
+          id?: string
+          item_id: string
+          note?: string | null
+          order_number?: string | null
+          reason: string
+        }
+        Update: {
+          change?: number
+          created_at?: string
+          id?: string
+          item_id?: string
+          note?: string | null
+          order_number?: string | null
+          reason?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_logs_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       menu_items: {
         Row: {
           category: string
@@ -128,6 +196,42 @@ export type Database = {
         }
         Relationships: []
       }
+      recipe_items: {
+        Row: {
+          id: string
+          inventory_item_id: string
+          menu_item_id: string
+          quantity_per_unit: number
+        }
+        Insert: {
+          id?: string
+          inventory_item_id: string
+          menu_item_id: string
+          quantity_per_unit: number
+        }
+        Update: {
+          id?: string
+          inventory_item_id?: string
+          menu_item_id?: string
+          quantity_per_unit?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recipe_items_inventory_item_id_fkey"
+            columns: ["inventory_item_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recipe_items_menu_item_id_fkey"
+            columns: ["menu_item_id"]
+            isOneToOne: false
+            referencedRelation: "menu_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
@@ -168,6 +272,15 @@ export type Database = {
           p_payment?: string
         }
         Returns: string
+      }
+      record_stock_movement: {
+        Args: {
+          p_change: number
+          p_item_id: string
+          p_note?: string
+          p_reason: string
+        }
+        Returns: number
       }
     }
     Enums: {
