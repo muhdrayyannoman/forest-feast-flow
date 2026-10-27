@@ -6,4 +6,4 @@
 - [x] Inventory page /inventory (stats, alerts, search/filter, add/edit, incoming/used movements, activity log)
 - [x] Links from kitchen dashboard and site footer
 - [x] Unit tests for stock status + quantity formatting
-- [ ] End-to-end verification in preview (admin session: inventory loads, add/edit/movement works, order placement deducts stock)
+- [x] End-to-end verification in preview (admin session: inventory loads, add/edit/movement works, order placement deducts stock)
