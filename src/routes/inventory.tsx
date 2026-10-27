@@ -159,7 +159,7 @@ function InventoryDashboard() {
     }
     const change = reason === "Incoming stock" ? amount : -amount;
     const { data, error } = await supabase.rpc("record_stock_movement", {
-      p_item_id: item.id, p_change: change, p_reason: reason, p_note: note.trim() || null,
+      p_item_id: item.id, p_change: change, p_reason: reason, p_note: note.trim() || undefined,
     });
     if (error) {
       toast.error(error.message);
