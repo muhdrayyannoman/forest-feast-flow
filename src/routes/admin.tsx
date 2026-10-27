@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -138,7 +138,10 @@ function Dashboard() {
     <div className="container-page py-12">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-4xl font-semibold">Kitchen Dashboard</h1>
-        <Button variant="outline" onClick={() => supabase.auth.signOut()}>Sign out</Button>
+        <div className="flex gap-2">
+          <Link to="/inventory"><Button variant="outline">Inventory</Button></Link>
+          <Button variant="outline" onClick={() => supabase.auth.signOut()}>Sign out</Button>
+        </div>
       </div>
       <div className="mt-6 flex gap-2">
         <Button variant={tab === "orders" ? "default" : "outline"} onClick={() => setTab("orders")}>Orders</Button>

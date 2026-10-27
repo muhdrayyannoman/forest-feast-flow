@@ -93,6 +93,7 @@ export function SiteFooter() {
             <Link to="/menu" className="hover:text-accent">Full menu</Link>
             <Link to="/orders" className="hover:text-accent">Track your order</Link>
             <Link to="/admin" className="hover:text-accent">Kitchen dashboard</Link>
+            <Link to="/inventory" className="hover:text-accent">Kitchen inventory</Link>
           </div>
         </div>
       </div>
