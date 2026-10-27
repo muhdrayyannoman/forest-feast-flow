@@ -15,6 +15,13 @@
       "when": 1793020587641,
       "tag": "0001_kitchen_inventory",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793065717473,
+      "tag": "0002_log_order_number_column",
+      "breakpoints": true
     }
   ]
 }
